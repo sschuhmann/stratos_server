@@ -1,0 +1,17 @@
+{
+  "name": "SystemsEngineering",
+  "version": "0.0.0",
+  "description": "Server for the stratos dashboard",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steffen Schuhmann",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.12.4",
+    "jwt-simple": "~0.3.0",
+    "morgan": "~1.5.3",
+    "body-parser": "~1.12.4"
+  }
+}
