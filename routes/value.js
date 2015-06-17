@@ -1,10 +1,6 @@
 var value = {
-
-	getAll: function(req, res) {
 	
-	},
-	
-	getValueWithID: function(req, res) {
+	getMission: function(req, res) {
 	
 	},
 	

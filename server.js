@@ -1,33 +1,37 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan')
-var bodyParser = require('body-parser')
+var restify = require('restify');
+var restifyOAuth2 = require('restify-oauth2')
+var hooks = require('./hook');
 
-var app = express();
+var host = process.env.HOST || '127.0.0.1';
+var port = process.env.PORT || '3000';
 
-app.use(logger('dev'));
-app.use(bodyParser.json());
+var mission = require ('./routes/mission.js');
+var value = require ('./routes/value.js');
+var sensor = require ('./routes/sensor.js');
 
-app.all('/*', function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header('Access-Control-Allow-Methods', 'GET,PUT');
-	res.header('Access-Control-Allow-Headers', 'Content-type, Accept, X-Access-Token, X-Key');
-	
-	next();
+var server = restify.createServer ({
+	name: 'Stratos API server'
 });
 
-app.all('/stratos/v1/*', [require('./middlewares/validateRequest')]);
+server.use(restify.authorizationParser());
+server.use(restify.bodyParser({mapParams: false}));
+restifyOAuth2.cc(server, {hooks: hooks});
 
-app.use('/', require('./routes'));
-
-app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
+server.use(function logger(req,res,next) {
+  console.log(new Date(),req.method,req.url);
+  next();
 });
 
-app.set('port', process.env.PORT || 3000);
+server.get ('/stratos/api/mission', mission.getAll);
+server.get ('/stratos/api/value:mission', value.getMission);
+server.get ('/stratos/api/sensor', sensor.getAll);
+server.get ('/stratis/api/sensor:id', sensor.getOne);
 
-var server = app.listen(app.get('port'), function() {
-	console.log('Express server listening on port ' + server.address().port);
+server.on('uncaughtException',function(request, response, route, error){
+  console.error(error.stack);
+  response.send(error);
+});
+
+server.listen(port,host, function() {
+  console.log('%s listening at %s', server.name, server.url);
 });
