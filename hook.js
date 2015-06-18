@@ -3,14 +3,21 @@
 //Replace with Database and woch
 var _ = require('underscore');
 var crypto = require ('crypto');
- 
+
+// Replace with user database and key value store
 var database = {
 	clients: {
 		testClient: {secret: "TEST", scopesGranted: ["one:read", "two"]}
 	},
+	
 	tokensToClientIds: {},
 	tokensToScopes: {}
 };
+
+var userStore = {
+	
+	
+}
 
 function generateToken(data) {
 	var random = Math.floor(Math.random() * 1000001);
