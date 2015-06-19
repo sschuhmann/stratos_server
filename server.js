@@ -9,6 +9,10 @@ var mission = require ('./routes/mission.js');
 var value = require ('./routes/value.js');
 var sensor = require ('./routes/sensor.js');
 
+var dbManager = require ('./models/databse');
+
+dbManager.initDatabase();
+
 var server = restify.createServer ({
 	name: 'Stratos API server'
 });
