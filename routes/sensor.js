@@ -6,6 +6,10 @@ var sensor = {
 
 	getOne: function (res, req) {
 
+	},
+	
+	create: function (res, req) {
+	
 	}
 };
 

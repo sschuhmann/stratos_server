@@ -13,6 +13,7 @@
     "woch": "~0.1.0",
     "restify-oauth2": "~4.0.3",
     "underscore": "~1.8.3",
-    "crypto": "0.0.3"
+    "crypto": "0.0.3",
+    "pg": "~4.4.0"
   }
 }

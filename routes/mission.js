@@ -35,6 +35,10 @@ var mission = {
 	  	end: 34435456,
 	  	desc: 'Hallo welt'
 	  });
+	},
+	
+	create: function(req, res) {
+		
 	}
 };
 
