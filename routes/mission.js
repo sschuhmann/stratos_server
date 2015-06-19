@@ -1,9 +1,15 @@
+var pg = require('pg');
+var connectionString = 'postgres://localhost:5432/stratos';
+
 var mission = {
 
 	getAll:  function(req, res) {
 		if (!req.clientId) {
     	return res.sendUnauthenticated();
 		}
+		
+		pg.connect(connectionString);
+		
 	  res.json({
 			id: 'abc123',
 	  	name : 'Testmission',
