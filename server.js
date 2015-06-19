@@ -9,7 +9,7 @@ var mission = require ('./routes/mission.js');
 var value = require ('./routes/value.js');
 var sensor = require ('./routes/sensor.js');
 
-var dbManager = require ('./models/databse');
+var dbManager = require ('./models/database');
 
 dbManager.initDatabase();
 
