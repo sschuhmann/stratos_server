@@ -1,12 +1,18 @@
 var pg = require('pg');
+var config = require('../options.js');
 
-// Javascript postgre workaround against unix user
-pg.defaults.user = 'stratos';
-pg.defaults.password = '5trAt0s';
+pg.defaults.user = config.storageConfig.database.user;
+pg.defaults.password = config.storageConfig.database.pass;
 
-var connectionString =  'postgres://localhost:5432/stratos';
+var connectionString =  config.storageConfig.database.url;
 
 var client = new pg.Client(connectionString);
+client.connect();
+
+client.on('error', function(error) {
+	console.log(error);
+	process.exit(-1);
+});
 
 var manager = {
 	
@@ -14,16 +20,18 @@ var manager = {
 	 * Create the database tables.
 	 */
 	initDatabase: function() {
-		client.connect();
-		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP);");
-		//query.on('end', function() {client.done();});
+		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP); CREATE TABLE IF NOT EXISTS user(api_key VARCHAR(30) PRIMARY KEY, api_pass VARCHAR(30));");
 	},
 	
 	/*
 	 * Add a new mission to the database
 	 */
 	createMission: function(mission) {
-
+		var query = client.query('INSERT INTO mission VALUES ($1, $2, $3);', [mission.description, mission.start_time, mission.end_time]);
+		
+		query.on('err', function(error) {
+			console.log(error);
+		});
 	},
 	
 	/*
@@ -45,7 +53,6 @@ var manager = {
 	 */
 	getAllMission: function () {
 		var results = [];
-		
 		var query = client.query('SELECT * FROM mission;');
 		
 		query.on('row', function(row) {
@@ -64,7 +71,6 @@ var manager = {
 	 * Return all sensors in the database
 	 */
 	getAllSensor: function () {
-		client.connect();
 		var results = [];
 		var query = client.query('SELECT * FROM sensor;');
 		
@@ -73,12 +79,9 @@ var manager = {
 		});
 		
 		query.on('end', function() {
-			client.end();
 			return results;
 		});
 	}
 };
 
 module.exports = manager;
-
-
