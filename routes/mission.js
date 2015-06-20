@@ -30,9 +30,13 @@ var mission = {
 		
 		var data = {};
 		
+		console.log(req);
+		
 		data.description = req.body.description;
 		data.start_time = req.body.start_time;
 		data.end_time = req.body.end_time;
+		
+		console.log(data);
 		
 		dbManager.createMission();
 	}
