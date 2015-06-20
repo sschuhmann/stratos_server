@@ -20,7 +20,7 @@ var manager = {
 	 * Create the database tables.
 	 */
 	initDatabase: function() {
-		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP); CREATE TABLE IF NOT EXISTS user(api_key VARCHAR(30) PRIMARY KEY, api_pass VARCHAR(30));");
+		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP);");
 		query.on ('error', function(error) {
 			console.log(error);
 		});
