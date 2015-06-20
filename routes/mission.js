@@ -24,7 +24,17 @@ var mission = {
 	},
 	
 	create: function(req, res) {
+		if (!req.clientId) {
+			return res.sendUnauthenticated();
+		}
 		
+		var data = {};
+		
+		data.description = req.body.description;
+		data.start_time = req.body.start_time;
+		data.end_time = req.body.end_time;
+		
+		dbManager.createMission();
 	}
 };
 
