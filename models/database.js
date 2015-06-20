@@ -16,7 +16,7 @@ var manager = {
 	initDatabase: function() {
 		client.connect();
 		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP);");
-		query.on('end', function() {client.end();});
+		//query.on('end', function() {client.done();});
 	},
 	
 	/*
@@ -44,7 +44,6 @@ var manager = {
 	 * Return all missions in the database
 	 */
 	getAllMission: function () {
-		client.connect();
 		var results = [];
 		
 		var query = client.query('SELECT * FROM mission;');
@@ -55,7 +54,7 @@ var manager = {
 		});
 		
 		query.on('end', function() {
-			client.end();
+		//	client.done();
 			console.log(results);
 			return results;
 		});

@@ -9,7 +9,8 @@ var mission = {
 		console.log('Accessing database');
 		data = dbManager.getAllMission();
 		console.log('Data: ' + data);
-		return res.json(data);
+		res.contentType = "application/hal+json";
+		return res.send(data);
 	},
 	
 	getOne: function(req, res) {
