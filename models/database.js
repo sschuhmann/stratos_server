@@ -2,9 +2,9 @@ var pg = require('pg');
 
 // Javascript postgre workaround against unix user
 pg.defaults.user = 'stratos';
-pg.defaults.password = null;
+pg.defaults.password = '5trAt0s';
 
-var connectionString = process.env.DATABASE_URL | 'postgres://localhost:5432/stratos';
+var connectionString =  'postgres://localhost:5432/stratos';
 
 var client = new pg.Client(connectionString);
 
@@ -15,7 +15,7 @@ var manager = {
 	 */
 	initDatabase: function() {
 		client.connect();
-		var query = client.query("CREATE TABLE IF NOT EXIST sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXIST mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP);");
+		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP);");
 		query.on('end', function() {client.end();});
 	},
 	
