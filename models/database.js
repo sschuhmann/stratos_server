@@ -51,10 +51,12 @@ var manager = {
 		
 		query.on('row', function(row) {
 			results.push(row);
+			console.log(row);
 		});
 		
 		query.on('end', function() {
 			client.end();
+			console.log(results);
 			return results;
 		});
 	},

@@ -6,10 +6,10 @@ var mission = {
 		if (!req.clientId) {
     	return res.sendUnauthenticated();
 		}
-		
+		console.log('Accessing database');
 		data = dbManager.getAllMission();
-		return res.json(data));
-		
+		console.log('Data: ' + data);
+		return res.json(data);
 	},
 	
 	getOne: function(req, res) {
