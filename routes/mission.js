@@ -7,7 +7,8 @@ var mission = {
     	return res.sendUnauthenticated();
 		}
 		
-		return res.json(dbManager.getAllMission());
+		data = dbManager.getAllMission();
+		return res.json(data));
 		
 	},
 	
