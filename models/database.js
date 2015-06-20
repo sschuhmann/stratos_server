@@ -21,6 +21,9 @@ var manager = {
 	 */
 	initDatabase: function() {
 		var query = client.query("CREATE TABLE IF NOT EXISTS sensor(id SERIAL PRIMARY KEY, description VARCHAR(40) not null, unit VARCHAR(10));	CREATE TABLE IF NOT EXISTS mission(id SERIAL PRIMARY KEY, description VARCHAR(80), start_time TIMESTAMP, end_time TIMESTAMP); CREATE TABLE IF NOT EXISTS user(api_key VARCHAR(30) PRIMARY KEY, api_pass VARCHAR(30));");
+		query.on ('error', function(error) {
+			console.log(error);
+		});
 	},
 	
 	/*
