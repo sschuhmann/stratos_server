@@ -23,8 +23,7 @@ var manager = {
 	 * Add a new mission to the database
 	 */
 	createMission: function(mission) {
-		client.connect();
-		var query = client.query("")
+
 	},
 	
 	/*
@@ -32,6 +31,50 @@ var manager = {
 	 */
 	createSensor: function() {
 	
+	},
+	
+	/*
+	 * Create a new user 
+	 */
+	createUser: function (user) {
+	
+	},
+	
+	/*
+	 * Return all missions in the database
+	 */
+	getAllMission: function () {
+		client.connect();
+		var results = [];
+		
+		var query = client.query('SELECT * FROM mission;');
+		
+		query.on('row', function(row) {
+			results.push(row);
+		});
+		
+		query.on('end', function() {
+			client.end();
+			return results;
+		});
+	},
+	
+	/*
+	 * Return all sensors in the database
+	 */
+	getAllSensor: function () {
+		client.connect();
+		var results = [];
+		var query = client.query('SELECT * FROM sensor;');
+		
+		query.on('row', function(row) {
+			results.push(row);
+		});
+		
+		query.on('end', function() {
+			client.end();
+			return results;
+		});
 	}
 };
 
