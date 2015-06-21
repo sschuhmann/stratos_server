@@ -6,11 +6,12 @@ var mission = {
 		if (!req.clientId) {
     	return res.sendUnauthenticated();
 		}
+		
 		console.log('Accessing database');
 		data = dbManager.getAllMission();
 		console.log('Data: ' + data);
 		res.contentType = "application/hal+json";
-		return res.send(data);
+		return res.json(data);
 	},
 	
 	getOne: function(req, res) {
@@ -18,14 +19,15 @@ var mission = {
     	return res.sendUnauthenticated();
 		}
 		
-		if (req.scopesGranted.indexOf("two") === -1) {
-			return res.sendUnauthorized();
-		}	
 	},
 	
 	create: function(req, res) {
 		if (!req.clientId) {
 			return res.sendUnauthenticated();
+		}
+		
+		if (req.scopesGranted.indexOf("whatever") === -1) {
+			return res.sendUnauthorized();
 		}
 		
 		var data = {};

@@ -40,7 +40,7 @@ var manager = {
 	/*
 	 * Add a new sensor to the database
 	 */
-	createSensor: function() {
+	createSensor: function(sensor) {
 	
 	},
 	

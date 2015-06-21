@@ -2,8 +2,8 @@ var restify = require('restify');
 var restifyOAuth2 = require('restify-oauth2')
 var hooks = require('./hook');
 
-var host = process.env.HOST || '127.0.0.1';
-var port = process.env.PORT || '3000';
+var host = process.env.HOST || '0.0.0.0';
+var port = process.env.PORT || '3001';
 
 var mission = require ('./routes/mission.js');
 var value = require ('./routes/value.js');
