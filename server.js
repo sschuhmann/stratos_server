@@ -3,7 +3,7 @@ var restifyOAuth2 = require('restify-oauth2')
 var hooks = require('./hook');
 
 var host = process.env.HOST || '0.0.0.0';
-var port = process.env.PORT || '3001';
+var port = process.env.PORT || '80';
 
 var mission = require ('./routes/mission.js');
 var value = require ('./routes/value.js');

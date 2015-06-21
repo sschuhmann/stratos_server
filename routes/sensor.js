@@ -19,7 +19,7 @@ var sensor = {
 			return res.sendUnauthenticated();
 		}
 		
-		if(!req.scopesGranted.indexOf("whatever") === -1)) {
+		if(!req.scopesGranted.indexOf("whatever") === -1) {
 			return res.sendUnautorized();
 		}
 		
