@@ -59,8 +59,6 @@ var manager = {
 			'INSERT INTO mission VALUES ($1, $2, $3);', 
 			[mission.description, mission.start_time, mission.end_time]
 		);
-		
-		query.on('err', errorHandler(error));
 	},
 	
 	createValue: function(value) {
@@ -68,8 +66,6 @@ var manager = {
 			'INSERT INTO value ($0, $1, $2);',
 			[value.timestamp, value.sensor_id, value.value]
 		);
-		
-		query.on('err', errorHandler(error));
 	},
 	
 	/*
@@ -80,8 +76,6 @@ var manager = {
 			'INSERT INTO sensor VALUES ($1, $2, $3, $4);',
 			[sensor.producer, sensor.sensorname, sensor.description, sensor.unit]
 		);
-		
-		query.on('err', errorHandler(error));
 	},
 	
 	createProducer: function(producer) {
@@ -89,8 +83,6 @@ var manager = {
 			'INSERT INTO producer VALUES ($1, $2);',
 			[producer.producer_name, producer.description]
 		);
-		
-		query.on('err', errorHandler(error));
 	},
 	
 	/*
@@ -131,8 +123,6 @@ var manager = {
 		query.on('row', function(row) {
 			results.push(row);
 		});
-		
-		query.on('err', errorHandler(error));
 	},
 	
 	/*
