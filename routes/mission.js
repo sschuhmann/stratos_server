@@ -19,6 +19,9 @@ var mission = {
     	return res.sendUnauthenticated();
 		}
 		
+		data = dbManager.getOne(req.params.missionid);
+		
+		return res.json(data);
 	},
 	
 	create: function(req, res) {

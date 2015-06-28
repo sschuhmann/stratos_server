@@ -9,7 +9,7 @@ var connectionString =  config.storageConfig.database.url;
 var client = new pg.Client(connectionString);
 client.connect();
 
-client.on('error', function(error) {
+client.on('err', function(error) {
 	console.log(error);
 	process.exit(-1);
 });
@@ -49,8 +49,6 @@ var manager = {
 				'description VARCHAR(80)' +
 			');'
 		);
-		
-		query.on ('error', errorHandler(error));
 	},
 	
 	/*
@@ -138,10 +136,19 @@ var manager = {
 	},
 	
 	/*
-	 *
+	 * 
 	 */	
 	getValues: function(missionId) {
-
+		var mission = getMission(mission);
+		var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' + mission.start_time + ' AND ' + mission.end_time);
+		
+		query.on('row', function(row) {
+			results.push(row);
+		});
+		
+		query.on('end', function() {
+			return results;
+		});
 	}
 };
 
