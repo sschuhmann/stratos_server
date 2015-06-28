@@ -134,7 +134,14 @@ var manager = {
 			results.push(row);
 		});
 		
-		query.on('end', errorHandler(error));
+		query.on('err', errorHandler(error));
+	},
+	
+	/*
+	 *
+	 */	
+	getValues: function(missionId) {
+
 	}
 };
 
