@@ -29,6 +29,7 @@ server.use(function logger(req,res,next) {
 });
 
 server.get ('/stratos/api/mission', mission.getAll);
+server.get ('/stratos/api/activemission', mission.getActiveMission);
 server.get ('/stratos/api/value:mission', value.getMission);
 server.get ('/stratos/api/sensor', sensor.getAll);
 server.get ('/stratos/api/sensor:id', sensor.getOne);

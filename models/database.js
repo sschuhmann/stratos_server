@@ -159,7 +159,7 @@ var manager = {
 	getLastValues: function(res) {
 		var results = [];
 		var query = client.query('SELECT * FROM ')
-	}
+	},
 	
 	/*
 	 * 
