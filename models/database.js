@@ -106,8 +106,6 @@ var manager = {
 		query.on('end', function() {
 			return results;
 		});
-		
-		return results;
 	},
 	
 	/*
