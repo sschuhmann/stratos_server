@@ -1,13 +1,15 @@
-var restify = require('restify');
+var restify 			= require('restify');
 var restifyOAuth2 = require('restify-oauth2')
-var hooks = require('./hook');
+var hooks 				= require('./hook');
 
-var host = process.env.HOST || '0.0.0.0';
-var port = process.env.PORT || '80';
+var config = require('./options.js');
+
+var host = config.storageConfig.server.host || '0.0.0.0';
+var port = config.storageConfig.server.port || '80';
 
 var mission = require ('./routes/mission.js');
-var value = require ('./routes/value.js');
-var sensor = require ('./routes/sensor.js');
+var value 	= require ('./routes/value.js');
+var sensor 	= require ('./routes/sensor.js');
 
 var dbManager = require ('./models/database');
 

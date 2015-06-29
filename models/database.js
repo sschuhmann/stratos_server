@@ -99,8 +99,6 @@ var manager = {
 		var results = [];
 		var query = client.query('SELECT * FROM mission;');
 		
-		query.on('err', errorHandler(error));
-		
 		query.on('row', function(row) {
 			results.push(row);
 			console.log(row);
