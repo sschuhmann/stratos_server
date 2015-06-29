@@ -16,7 +16,15 @@ var mission = {
     	return res.sendUnauthenticated();
 		}
 		
-		data = dbManager.getOne(req.params.missionid, res);
+		dbManager.getOne(req.params.missionid, res);
+	},
+	
+	getActiveMission(req, res) {
+		if(!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		dbManager.getActiveMission(res);
 	},
 	
 	create: function(req, res) {

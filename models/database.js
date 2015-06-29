@@ -55,6 +55,9 @@ var manager = {
 	 * Add a new mission to the database
 	 */
 	createMission: function(mission, res) {
+	
+		//TODO Check for active missions !!!
+		
 		var query = client.query(
 			'INSERT INTO mission (description, start_time, end_time) VALUES ($1, $2, $3);', 
 			[mission.description, mission.start_time, mission.end_time]
@@ -114,6 +117,30 @@ var manager = {
 	},
 	
 	/*
+	 * Return the active mission. A mission is active, if the start_time but 
+	 * not the end_time is set.
+	 * There sould only be one active mission in the database. If there is
+	 * more than one active mission, the server respond with an error message.
+	 */
+	getActiveMission: function (res) {
+		var results = [];
+		var query = client.query('SELECT * FROM mission WHERE end_time IS NULL;');
+		
+		query.on('row', function(row) {
+			results.push(row);
+		});
+		
+		query.on('end', function() {
+			if(result.length > 2) {
+				console.log('More than 2 active missions');
+				res.status(500).send('There is more than one active mission');
+			}
+			
+			res.json(results);
+		});
+	},
+	
+	/*
 	 * Return all sensors in the database
 	 */
 	getAllSensor: function (res) {
@@ -129,19 +156,28 @@ var manager = {
 		});
 	},
 	
+	getLastValues: function(res) {
+		var results = [];
+		var query = client.query('SELECT * FROM ')
+	}
+	
 	/*
 	 * 
 	 */	
-	getValues: function(missionId) {
+	getValues: function(missionId, res) {
 		var mission = getMission(mission);
-		var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' + mission.start_time + ' AND ' + mission.end_time);
+		var results = [];
+		var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+			mission.start_time + 
+			' AND ' + 
+			mission.end_time);
 		
 		query.on('row', function(row) {
 			results.push(row);
 		});
 		
 		query.on('end', function() {
-			return results;
+			res.json(results);
 		});
 	}
 };
