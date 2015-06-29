@@ -43,7 +43,7 @@ var mission = {
 		
 		console.log(data);
 		
-		dbManager.createMission(data);
+		dbManager.createMission(data, res);
 	}
 };
 

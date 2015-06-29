@@ -61,10 +61,6 @@ var manager = {
 		);
 		
 		query.on('end', function() {
-			if (err) {
-				return res.status(500);
-			}
-			
 			return res.json(mission);
 		});
 	},
