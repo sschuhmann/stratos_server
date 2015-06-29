@@ -112,7 +112,7 @@ var manager = {
 		
 		query.on('end', function() {
 			console.log("Result Array: " + results);
-			res.json(results);
+			res.json(results | "No active mission");
 		});
 	},
 	
