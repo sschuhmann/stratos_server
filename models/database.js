@@ -96,7 +96,6 @@ var manager = {
 	 * Return all missions in the database
 	 */
 	getAllMission: function () {
-		var results = [];
 		var query = client.query('SELECT * FROM mission;');
 		
 		query.on('row', function(row) {
