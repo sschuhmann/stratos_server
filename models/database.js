@@ -107,7 +107,7 @@ var manager = {
 		query.on('end', function() {
 		//	client.done();
 			console.log(results);
-			return results;
+			return res.json(data);
 		});
 	},
 	
