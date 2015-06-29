@@ -2,7 +2,7 @@ var dbManager = require('../models/database');
 
 var mission = {
 
-	getAll:  function(req, res) {
+	getAll: function(req, res) {
 		if (!req.clientId) {
     	return res.sendUnauthenticated();
 		}
@@ -10,7 +10,7 @@ var mission = {
 		console.log('Accessing database');
 		data = dbManager.getAllMission();
 		console.log('Data: ' + data);
-		res.contentType = "application/hal+json";
+//		res.contentType = "application/hal+json";
 		return res.json(data);
 	},
 	
