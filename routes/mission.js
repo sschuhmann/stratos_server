@@ -19,7 +19,7 @@ var mission = {
 		dbManager.getOne(req.params.missionid, res);
 	},
 	
-	getActiveMission(req, res) {
+	getActiveMission: function(req, res) {
 		if(!req.clientId) {
 			return res.sendUnauthenticated();
 		}
