@@ -99,7 +99,7 @@ var manager = {
 	/*
 	 * Return all missions in the database
 	 */
-	getAllMission: function () {
+	getAllMission: function (res) {
 		var results = [];
 		var query = client.query('SELECT * FROM mission;');
 		
@@ -109,19 +109,23 @@ var manager = {
 		
 		query.on('end', function() {
 			console.log("Result Array: " + results);
-			return results;
+			res.json(results);
 		});
 	},
 	
 	/*
 	 * Return all sensors in the database
 	 */
-	getAllSensor: function () {
+	getAllSensor: function (res) {
 		var results = [];
 		var query = client.query('SELECT * FROM sensor;');
 		
 		query.on('row', function(row) {
 			results.push(row);
+		});
+		
+		query.on('end', function() {
+			res.json(results);
 		});
 	},
 	

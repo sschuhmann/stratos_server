@@ -8,10 +8,7 @@ var mission = {
 		}
 		
 		console.log('Accessing database');
-		data = dbManager.getAllMission();
-		console.log('Data: ' + data);
-//		res.contentType = "application/hal+json";
-		return res.json(data);
+		data = dbManager.getAllMission(res);
 	},
 	
 	getOne: function(req, res) {
@@ -19,9 +16,7 @@ var mission = {
     	return res.sendUnauthenticated();
 		}
 		
-		data = dbManager.getOne(req.params.missionid);
-		
-		return res.json(data);
+		data = dbManager.getOne(req.params.missionid, res);
 	},
 	
 	create: function(req, res) {

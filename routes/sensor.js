@@ -7,7 +7,7 @@ var sensor = {
     	return res.sendUnauthenticated();
 		}
 		
-		return res.json(dbManager.getAllSensor());
+		dbManager.getAllSensor(res);
 	},
 
 	getOne: function (res, req) {
