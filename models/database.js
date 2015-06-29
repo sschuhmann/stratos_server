@@ -54,11 +54,19 @@ var manager = {
 	/*
 	 * Add a new mission to the database
 	 */
-	createMission: function(mission) {
+	createMission: function(mission, res) {
 		var query = client.query(
 			'INSERT INTO mission (description, start_time, end_time) VALUES ($1, $2, $3);', 
 			[mission.description, mission.start_time, mission.end_time]
 		);
+		
+		query.on('end', function() {
+			if (err) {
+				return res.status(500);
+			}
+			
+			return res.json(mission);
+		});
 	},
 	
 	createValue: function(value) {
