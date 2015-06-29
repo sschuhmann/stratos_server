@@ -26,19 +26,19 @@ var manager = {
 	initDatabase: function() {
 		var query = client.query(
 			'CREATE TABLE IF NOT EXISTS producer (' +
-				'id SERIAL,' +
+				'id SERIAL PRIMARY KEY,' +
 				'name VARCHAR(20),' +
 				'description VARCHAR(80)' +
 			');'+
 			'CREATE TABLE IF NOT EXISTS sensor(' +
-				'id SERIAL, '+
+				'id SERIAL PRIMARY KEY, '+
 				'producer INTEGER references producer(id), ' +
 				'name VARCHAR(20) not null, ' +
 				'description VARCHAR(40), ' +
 				'unit VARCHAR(10)' +
 			');' +
 			'CREATE TABLE IF NOT EXISTS mission(' +
-				'id SERIAL, '+ 
+				'id SERIAL PRIMARY KEY, '+ 
 				'description VARCHAR(80), ' +
 				'start_time TIMESTAMP, ' +
 				'end_time TIMESTAMP'+
