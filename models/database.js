@@ -25,6 +25,11 @@ var manager = {
 	 */
 	initDatabase: function() {
 		var query = client.query(
+			'CREATE TABLE IF NOT EXISTS producer (' +
+				'id SERIAL,' +
+				'name VARCHAR(20),' +
+				'description VARCHAR(80)' +
+			');'+
 			'CREATE TABLE IF NOT EXISTS sensor(' +
 				'id SERIAL, '+
 				'producer INTEGER references producer(id), ' +
@@ -42,11 +47,6 @@ var manager = {
 				'timestamp TIMESTAMP, ' +
 				'sensor_id INTEGER references sensor(id), ' +
 				'value decimal' +
-			');' +
-			'CREATE TABLE IF NOT EXISTS producer (' +
-				'id SERIAL,' +
-				'name VARCHAR(20),' +
-				'description VARCHAR(80)' +
 			');'
 		);
 	},
