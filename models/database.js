@@ -56,14 +56,14 @@ var manager = {
 	 */
 	createMission: function(mission) {
 		var query = client.query(
-			'INSERT INTO mission VALUES ($1, $2, $3);', 
+			'INSERT INTO mission (description, start_time, end_time) VALUES ($1, $2, $3);', 
 			[mission.description, mission.start_time, mission.end_time]
 		);
 	},
 	
 	createValue: function(value) {
 		var query = client.query (
-			'INSERT INTO value ($0, $1, $2);',
+			'INSERT INTO value (timestamp, sensor_id, decimal) VALUES ($0, $1, $2);',
 			[value.timestamp, value.sensor_id, value.value]
 		);
 	},
@@ -73,14 +73,14 @@ var manager = {
 	 */
 	createSensor: function(sensor) {
 		var query = client.query(
-			'INSERT INTO sensor VALUES ($1, $2, $3, $4);',
+			'INSERT INTO sensor (producer, name, description, unit) VALUES ($1, $2, $3, $4);',
 			[sensor.producer, sensor.sensorname, sensor.description, sensor.unit]
 		);
 	},
 	
 	createProducer: function(producer) {
 		var query = client.query (
-			'INSERT INTO producer VALUES ($1, $2);',
+			'INSERT INTO producer (name, description) VALUES ($1, $2);',
 			[producer.producer_name, producer.description]
 		);
 	},
