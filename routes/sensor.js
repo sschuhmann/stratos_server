@@ -3,7 +3,11 @@ var dbManager = require('../models/database.js');
 var sensor = {
 
 	getAll: function (req, res) {
-		console.log('Requesting data');
+	
+		if (!req.clientId) {
+    	return res.sendUnauthenticated();
+		}
+
 		dbManager.getAllSensor(res);
 	},
 
