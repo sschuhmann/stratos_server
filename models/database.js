@@ -133,7 +133,7 @@ var manager = {
 		query.on('end', function() {
 			if(result.length > 2) {
 				console.log('More than 2 active missions');
-				res.status(500).send('There is more than one active mission');
+				res.status(500).send('There is more than one active mission');	
 			}
 			
 			res.json(results);
@@ -152,6 +152,7 @@ var manager = {
 		});
 		
 		query.on('end', function() {
+			console.log("Sensor: " + results);
 			res.json(results);
 		});
 	},

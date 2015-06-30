@@ -2,8 +2,8 @@ var dbManager = require('../models/database.js');
 
 var sensor = {
 
-	getAll: function (res, req) {	
-		if(!req.clientId) {
+	getAll: function (res, req) {
+		if (!req.clientId) {
     	return res.sendUnauthenticated();
 		}
 		

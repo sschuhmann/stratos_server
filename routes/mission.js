@@ -8,7 +8,7 @@ var mission = {
 		}
 		
 		console.log('Accessing database');
-		data = dbManager.getAllMission(res);
+		dbManager.getAllMission(res);
 	},
 	
 	getOne: function(req, res) {
@@ -41,8 +41,8 @@ var mission = {
 		console.log(req);
 		
 		data.description = req.body.description;
-		data.start_time = req.body.start_time;
-		data.end_time = req.body.end_time;
+		data.start_time = req.body.start_time | null;
+		data.end_time = req.body.end_time | null;
 		
 		console.log(data);
 		
