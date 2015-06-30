@@ -21,6 +21,7 @@ var server = restify.createServer ({
 
 server.use(restify.authorizationParser());
 server.use(restify.bodyParser({mapParams: false}));
+server.use(restify.queryParser());
 restifyOAuth2.cc(server, {hooks: hooks});
 
 server.use(function logger(req,res,next) {
