@@ -19,7 +19,7 @@ var value = {
 		
 		//TODO Add Authorization!
 		
-		value = {};
+		var value = {};
 		
 		value.timestamp = req.body.timestamp;
 		value.sensorId = req.body.sensorId;
