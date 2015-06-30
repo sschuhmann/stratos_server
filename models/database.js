@@ -225,7 +225,7 @@ var manager = {
 	 * 
 	 */	
 	getValues: function(missionId, res) {
-		var mission = getMission(mission);
+		//var mission = getMission(mission);
 		var results = [];
 		
 		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
