@@ -209,7 +209,7 @@ var manager = {
 	getLastValues: function(res) {
 		var results = [];
 		//TODO check if there is an active mission
-		var query = client.query('SELECT * FROM value WHERE  EXISTS (select max(timestamp) from sensor);');
+		var query = client.query('SELECT * FROM value WHERE timestamp IN (select max(timestamp) from sensor);');
 		
 		query.on('row', function(row) {
 			results.push (row);
