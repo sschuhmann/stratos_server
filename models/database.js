@@ -131,7 +131,7 @@ var manager = {
 		});
 		
 		query.on('end', function() {
-			if(result.length > 2) {
+			if(results.length > 2) {
 				console.log('More than 2 active missions');
 				res.status(500).send('There is more than one active mission');	
 			}
