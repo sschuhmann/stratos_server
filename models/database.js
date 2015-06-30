@@ -239,6 +239,9 @@ var manager = {
 		
 			var results = [];
 			console.log(row);
+			
+			if (!row)
+				res.json({});
 		
 			if (row.end_time != null) {
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
