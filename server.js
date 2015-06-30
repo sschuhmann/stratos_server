@@ -36,7 +36,7 @@ server.get ('/stratos/api/sensor', sensor.getAll);
 server.get ('/stratos/api/sensor:id', sensor.getOne);
 
 server.post('/stratos/api/mission', mission.create);
-server.post('/stratos/api/value', value.create);
+server.post('/stratos/api/value', value.addValue);
 
 server.on('uncaughtException',function(request, response, route, error){
   console.error(error.stack);
