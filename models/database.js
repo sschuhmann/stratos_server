@@ -108,10 +108,10 @@ var manager = {
 				console.log('ready');
 			});
 		}, function(err, res) {
-			res.status(200).send('KK');
+			res.send(200);
 		});
 		
-		res.status(200).send('JIP');
+		res.send(200);
 	},
 	
 	/*
