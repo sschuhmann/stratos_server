@@ -213,6 +213,14 @@ var manager = {
 		});
 	},
 	
+	getMission: function (missionId) {
+		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
+		
+		query.on('row', function(row) {
+			return row;
+		});
+	},
+	
 	/*
 	 * 
 	 */	
