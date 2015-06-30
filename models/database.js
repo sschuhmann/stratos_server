@@ -243,7 +243,7 @@ var manager = {
 			} else {
 				var query = client.query('SELECT * FROM value WHERE timestamp \'' +
 					row.start_time +
-					'\'::timestamp;' //+
+					'\' AS TIMESTAMP;' //+
 	//				'now()::timestamp;'
 					);
 			}
