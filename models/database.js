@@ -107,7 +107,7 @@ var manager = {
 				console.log('ready');
 			});
 		}, function(err, res) {
-			return res.status(200);
+			res.status(200);
 		});
 			
 		}
