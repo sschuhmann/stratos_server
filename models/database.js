@@ -109,8 +109,7 @@ var manager = {
 		}, function(err, res) {
 			res.status(200);
 		});
-			
-		}
+		
 	},
 	
 	/*
