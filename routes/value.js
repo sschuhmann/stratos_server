@@ -25,7 +25,7 @@ var value = {
 		value.sensorId = req.body.sensorId;
 		value.value = req.body.value;
 		
-		dbManager.addValue(value);
+		dbManager.createValue(value);
 	}
 };
 
