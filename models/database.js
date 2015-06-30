@@ -94,6 +94,7 @@ var manager = {
 	createValues: function(valueList, res) {
 		
 		for (var value in valueList) {
+			console.log(value);
 			var query = client.query (
 				'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
 				[value.timestamp, value.sensorId, value.value]
@@ -101,6 +102,10 @@ var manager = {
 			
 			query.on('error', function(error) {
 				console.log(error);
+			});
+			
+			query.on('end', function() {
+				console.log('ready');
 			});
 		}
 		
