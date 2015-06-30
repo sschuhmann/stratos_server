@@ -111,8 +111,6 @@ var manager = {
 		});
 			
 		}
-		
-		return res.status(200);
 	},
 	
 	/*
