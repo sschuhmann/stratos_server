@@ -228,7 +228,7 @@ var manager = {
 		var mission = getMission(mission);
 		var results = [];
 		
-		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId);
+		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
 		
 		query.on('row', function(row) {
 		
