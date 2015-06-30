@@ -232,6 +232,8 @@ var manager = {
 		
 		query.on('row', function(row) {
 		
+			console.log(row);
+		
 			if (row.end_time != null) {
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
 					row.start_time + 
