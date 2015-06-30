@@ -18,14 +18,14 @@ var value = {
 		}
 		
 		//TODO Add Authorization!
-		
-		var value = {};
-		
-		value.timestamp = req.body.timestamp;
-		value.sensorId = req.body.sensorId;
-		value.value = req.body.value;
-		
-		dbManager.createValue(value, res);
+		try {
+			var value = JSON.parse(req.body);
+			
+			dbManager.createValue(value, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).send(err);
+		}
 	},
 	
 	addValueList: function(req, res) {
@@ -33,11 +33,16 @@ var value = {
 			return res.sendUnauthenticated();
 		}
 		
-		var valueList = JSON.parse(req.body);
+		try {
+			var valueList = JSON.parse(req.body);
 		
-		console.log(valueList);
+			console.log(valueList);
 		
-		dbManager.createValues(valueList, res);
+			dbManager.createValues(valueList, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).send(err);
+		}
 		
 	},
 };
