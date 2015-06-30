@@ -257,9 +257,9 @@ var manager = {
 			});
 		});
 		
-		query.on('end', function() {
-			res.json({});
-		});
+//		query.on('end', function() {
+//			res.json({});
+//		});
 	}
 };
 
