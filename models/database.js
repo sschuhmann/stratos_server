@@ -2,6 +2,13 @@ var pg = require('pg');
 var config = require('../options.js');
 var async = require('async');
 
+/* Postgres driver timestamp conversion fix*/
+var types = require('pg').types;
+var timestampOID = 1114;
+types.setTypeParser(1114, function(stringValue) {
+  return stringValue;
+})
+
 pg.defaults.user = config.storageConfig.database.user;
 pg.defaults.password = config.storageConfig.database.pass;
 
