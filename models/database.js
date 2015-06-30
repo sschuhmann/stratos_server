@@ -1,5 +1,6 @@
 var pg = require('pg');
 var config = require('../options.js');
+var async = require('async');
 
 pg.defaults.user = config.storageConfig.database.user;
 pg.defaults.password = config.storageConfig.database.pass;
