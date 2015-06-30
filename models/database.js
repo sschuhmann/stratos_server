@@ -228,26 +228,31 @@ var manager = {
 		var mission = getMission(mission);
 		var results = [];
 		
-		if (mission.end_time != null) {
-			var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
-				mission.start_time + 
-				' AND ' + 
-				mission.end_time +
-				';');
-		} else {
-			var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
-				mission.start_time +
-				'AND' +
-				'now()::timestamp;'
-				);
-		}
+		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId);
 		
 		query.on('row', function(row) {
-			results.push(row);
-		});
 		
-		query.on('end', function() {
-			res.json(results);
+			if (row.end_time != null) {
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+					row.start_time + 
+					' AND ' + 
+					row.end_time +
+					';');
+			} else {
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+					row.start_time +
+					'AND' +
+					'now()::timestamp;'
+					);
+			}
+		
+			query.on('row', function(row) {
+				results.push(row);
+			});
+		
+			query.on('end', function() {
+				res.json(results);
+			});
 		});
 	}
 };
