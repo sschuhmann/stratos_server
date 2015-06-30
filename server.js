@@ -20,7 +20,7 @@ var server = restify.createServer ({
 });
 
 server.use(restify.authorizationParser());
-server.use(restify.bodyParser({mapParams: true}));
+server.use(restify.bodyParser({mapParams: false}));
 server.use(restify.queryParser());
 restifyOAuth2.cc(server, {hooks: hooks});
 
@@ -31,7 +31,7 @@ server.use(function logger(req,res,next) {
 
 server.get ('/stratos/api/mission', 			mission.getAll);
 server.get ('/stratos/api/activemission', mission.getActiveMission);
-server.get ('/stratos/api/value:mission', value.getMission);
+server.get ('/stratos/api/missionValues:mission', value.getMission);
 server.get ('/stratis/api/lastValues', 		value.getLastValues);
 server.get ('/stratos/api/sensor', 				sensor.getAll);
 server.get ('/stratos/api/sensor:id', 		sensor.getOne);
