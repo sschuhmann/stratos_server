@@ -7,9 +7,15 @@ var value = {
     	return res.sendUnauthenticated();
 		}
 		
-		data = dbManager.getValues(req.params.mission);
+		dbManager.getValues(req.params.mission, res);
+	},
+	
+	getLastValues: function (req, res) {
+		if(!req.clientId) {
+			return res.sendUnauthenticated();
+		}
 		
-		return res.json(data);
+		dbManager.getLastValues(res);
 	},
 	
 	addValue: function(req, res) {
@@ -32,6 +38,8 @@ var value = {
 		if (!req.clientId) {
 			return res.sendUnauthenticated();
 		}
+		
+		//TODO Add Authorization
 		
 		try {
 			var valueList = JSON.parse(req.body);

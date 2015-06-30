@@ -29,11 +29,12 @@ server.use(function logger(req,res,next) {
   next();
 });
 
-server.get ('/stratos/api/mission', mission.getAll);
+server.get ('/stratos/api/mission', 			mission.getAll);
 server.get ('/stratos/api/activemission', mission.getActiveMission);
 server.get ('/stratos/api/value:mission', value.getMission);
-server.get ('/stratos/api/sensor', sensor.getAll);
-server.get ('/stratos/api/sensor:id', sensor.getOne);
+server.get ('/stratis/api/lastValues', 		value.getLastValues);
+server.get ('/stratos/api/sensor', 				sensor.getAll);
+server.get ('/stratos/api/sensor:id', 		sensor.getOne);
 
 server.post('/stratos/api/mission', mission.create);
 server.post('/stratos/api/value', value.addValue);

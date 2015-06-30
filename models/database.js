@@ -115,13 +115,6 @@ var manager = {
 	},
 	
 	/*
-	 *
-	 */
-	 createValueList: function(valuelist, res) {
-	 
-	 },
-	
-	/*
 	 * Add a new sensor to the database
 	 */
 	createSensor: function(sensor) {
@@ -158,7 +151,7 @@ var manager = {
 		
 		query.on('end', function() {
 			console.log("Result Array: " + results);
-			res.json(results | "No active mission");
+			res.json(results);
 		});
 	},
 	
@@ -203,8 +196,12 @@ var manager = {
 		});
 	},
 	
+	/*
+	 * Get last values of the active mission.
+	 */
 	getLastValues: function(res) {
 		var results = [];
+		//TODO check if there is an active mission
 		var query = client.query('SELECT * FROM value WHERE timestamp = (select max(timestamp) from sensor)');
 		
 		query.on('row', function(row) {
