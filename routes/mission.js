@@ -32,10 +32,6 @@ var mission = {
 			return res.sendUnauthenticated();
 		}
 		
-//		if (req.scopesGranted.indexOf("whatever") === -1) {
-//			return res.sendUnauthorized();
-//		}
-		
 		var data = {};
 		
 		console.log(req);

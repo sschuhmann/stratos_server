@@ -25,8 +25,19 @@ var value = {
 		value.sensorId = req.body.sensorId;
 		value.value = req.body.value;
 		
-		dbManager.createValue(value);
-	}
+		dbManager.createValue(value, res);
+	},
+	
+	addValueList: function(req, res) {
+		if (!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		var valueList = JSON.parse(req.body);
+		
+		console.log(valueList);
+		
+	},
 };
 
 module.exports = value; 
