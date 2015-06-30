@@ -111,6 +111,7 @@ var manager = {
 			res.status(200);
 		});
 		
+		res.status(200);
 	},
 	
 	/*
