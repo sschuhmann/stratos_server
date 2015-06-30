@@ -68,12 +68,22 @@ var manager = {
 		});
 	},
 	
+	/*
+	 * Add a value to the database.
+	 */
 	createValue: function(value) {
 		var query = client.query (
 			'INSERT INTO value (timestamp, sensor_id, decimal) VALUES ($0, $1, $2);',
 			[value.timestamp, value.sensor_id, value.value]
 		);
 	},
+	
+	/*
+	 *
+	 */
+	 createValueList: function(valuelist, res) {
+	 
+	 },
 	
 	/*
 	 * Add a new sensor to the database
@@ -136,7 +146,7 @@ var manager = {
 				res.status(500).send('There is more than one active mission');	
 			}
 			
-			res.json(results);
+			res.json(results[0]);
 		});
 	},
 	
@@ -159,7 +169,15 @@ var manager = {
 	
 	getLastValues: function(res) {
 		var results = [];
-		var query = client.query('SELECT * FROM ')
+		var query = client.query('SELECT * FROM value WHERE timestamp = (select max(timestamp) from sensor)');
+		
+		query.on('row', function(row) {
+			results.push (row);
+		});
+		
+		query.on('end', function(row) {
+			res.json(results);
+		});
 	},
 	
 	/*
@@ -168,10 +186,20 @@ var manager = {
 	getValues: function(missionId, res) {
 		var mission = getMission(mission);
 		var results = [];
-		var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
-			mission.start_time + 
-			' AND ' + 
-			mission.end_time);
+		
+		if (mission.end_time != null) {
+			var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+				mission.start_time + 
+				' AND ' + 
+				mission.end_time +
+				';');
+		} else {
+			var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+				mission.start_time +
+				'AND' +
+				'now()::timestamp;'
+				);
+		}
 		
 		query.on('row', function(row) {
 			results.push(row);
