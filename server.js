@@ -29,16 +29,18 @@ server.use(function logger(req,res,next) {
   next();
 });
 
-server.get ('/stratos/api/mission', 			mission.getAll);
-server.get ('/stratos/api/activemission', mission.getActiveMission);
-server.get ('/stratos/api/missionValues:mission', value.getMission);
-server.get ('/stratis/api/lastValues', 		value.getLastValues);
-server.get ('/stratos/api/sensor', 				sensor.getAll);
-server.get ('/stratos/api/sensor:id', 		sensor.getOne);
+/* GET Routes*/
+server.get ('/stratos/api/mission', 							mission.getAll);
+server.get ('/stratos/api/activemission', 				mission.getActiveMission);
+server.get ('/stratos/api/missionValues/:mission', value.getMission);
+server.get ('/stratis/api/lastValues', 						value.getLastValues);
+server.get ('/stratos/api/sensor', 								sensor.getAll);
+server.get ('/stratos/api/sensor/:id', 						sensor.getOne);
 
-server.post('/stratos/api/mission', mission.create);
-server.post('/stratos/api/value', value.addValue);
-server.post('/stratos/api/valueList', value.addValueList);
+/* POST ROUTES */
+server.post('/stratos/api/mission', 							mission.create);
+server.post('/stratos/api/value', 								value.addValue);
+server.post('/stratos/api/valueList', 						value.addValueList);
 
 server.on('uncaughtException',function(request, response, route, error){
   console.error(error.stack);
