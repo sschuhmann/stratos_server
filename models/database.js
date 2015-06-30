@@ -235,15 +235,15 @@ var manager = {
 			console.log(row);
 		
 			if (row.end_time != null) {
-				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN "' +
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
 					row.start_time + 
 					'" AND "' + 
 					row.end_time +
 					'";');
 			} else {
-				var query = client.query('SELECT * FROM value WHERE timestamp "' +
+				var query = client.query('SELECT * FROM value WHERE timestamp \'' +
 					row.start_time +
-					'"::timestamp;' //+
+					'\'::timestamp;' //+
 	//				'now()::timestamp;'
 					);
 			}
