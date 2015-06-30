@@ -226,12 +226,12 @@ var manager = {
 	 */	
 	getValues: function(missionId, res) {
 		//var mission = getMission(mission);
-		var results = [];
 		
 		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
 		
 		query.on('row', function(row) {
 		
+			var results = [];
 			console.log(row);
 		
 			if (row.end_time != null) {
@@ -255,6 +255,10 @@ var manager = {
 			query.on('end', function() {
 				res.json(results);
 			});
+		});
+		
+		query.on('end', function() {
+			res.json({});
 		});
 	}
 };
