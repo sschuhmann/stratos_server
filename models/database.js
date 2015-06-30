@@ -209,7 +209,7 @@ var manager = {
 	getLastValues: function(res) {
 		var results = [];
 		//TODO check if there is an active mission
-		var query = client.query('SELECT * FROM value WHERE timestamp = (select max(timestamp) from sensor)');
+		var query = client.query('SELECT * FROM value WHERE  EXISTS (select max(timestamp) from sensor);');
 		
 		query.on('row', function(row) {
 			results.push (row);
@@ -232,7 +232,6 @@ var manager = {
 	 * 
 	 */	
 	getValues: function(missionId, res) {
-		//var mission = getMission(mission);
 		
 		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
 		
@@ -242,11 +241,11 @@ var manager = {
 			console.log(row);
 		
 			if (row.end_time != null) {
-				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN ' +
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
 					row.start_time + 
-					'" AND "' + 
+					'\' AND \'' + 
 					row.end_time +
-					'";');
+					'\';');
 			} else {
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
 					row.start_time +
