@@ -2,28 +2,19 @@ var dbManager = require('../models/database.js');
 
 var sensor = {
 
-	getAll: function (res, req) {
-		if (!req.clientId) {
-//    	return res.sendUnauthenticated();
-		}
-		
+	getAll: function (req, res) {
+		console.log('Requesting data');
 		dbManager.getAllSensor(res);
 	},
 
-	getOne: function (res, req) {
+	getOne: function (req, res) {
 
 	},
 	
-	create: function (res, req) {
+	create: function (req, res) {
 		if(!req.clientId) {
 			return res.sendUnauthenticated();
 		}
-		
-		if(!req.scopesGranted.indexOf("whatever") === -1) {
-			return res.sendUnautorized();
-		}
-		
-		//TODO Do dat create
 	}
 };
 
