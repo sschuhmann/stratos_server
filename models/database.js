@@ -248,10 +248,10 @@ var manager = {
 					row.end_time +
 					'";');
 			} else {
-				var query = client.query('SELECT * FROM value WHERE timestamp \'' +
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
 					row.start_time +
-					'\';' //+
-	//				'now()::timestamp;'
+					'\' AND ' //+
+					'now()::timestamp;'
 					);
 			}
 		
