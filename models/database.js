@@ -243,7 +243,7 @@ var manager = {
 			} else {
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
 					row.start_time +
-					'\' AND ' +
+					'\'::timestamp AND ' +
 					'now()::timestamp;'
 					);
 			}
