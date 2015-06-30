@@ -234,14 +234,11 @@ var manager = {
 	getValues: function(missionId, res) {
 		
 		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
+		var found = false;
 		
 		query.on('row', function(row) {
-		
+			found = true;
 			var results = [];
-			console.log(row);
-			
-			if (!row)
-				res.json({});
 		
 			if (row.end_time != null) {
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN \'' +
@@ -266,9 +263,11 @@ var manager = {
 			});
 		});
 		
-//		query.on('end', function() {
-//			res.json({});
-//		});
+		query.on('end', function() {
+			if(!found) {
+			 res.json({});
+			}
+		});
 	}
 };
 
