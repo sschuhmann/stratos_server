@@ -93,11 +93,10 @@ var manager = {
 	
 	createValues: function(valueList, res) {
 		
-		for (var n in valueList) {
-			console.log(valueList[n]);
+		async.eachLimit (valueList, 4, function(row) {
 			var query = client.query (
 				'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
-				[valueList[n].timestamp, valueList[n].sensorId, valueList[n].value]
+				[row.timestamp, row.sensorId, row.value]
 			);
 			
 			query.on('error', function(error) {
@@ -107,6 +106,10 @@ var manager = {
 			query.on('end', function() {
 				console.log('ready');
 			});
+		}, function(err, res) {
+			return res.status(200);
+		});
+			
 		}
 		
 		return res.status(200);
