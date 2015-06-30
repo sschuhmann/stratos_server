@@ -37,6 +37,8 @@ var value = {
 		
 		console.log(valueList);
 		
+		dbManager.createValues(valueList, res);
+		
 	},
 };
 
