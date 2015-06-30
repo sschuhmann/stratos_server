@@ -63,6 +63,10 @@ var manager = {
 			[mission.description, mission.start_time, mission.end_time]
 		);
 		
+		query.on('error', function(error) {
+			res.status(500);
+		});
+		
 		query.on('end', function() {
 			return res.json(mission);
 		});
@@ -71,11 +75,20 @@ var manager = {
 	/*
 	 * Add a value to the database.
 	 */
-	createValue: function(value) {
+	createValue: function(value, res) {
 		var query = client.query (
 			'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
-			[value.timestamp, value.sensor_id, value.value]
+			[value.timestamp, value.sensorId, value.value]
 		);
+		
+		query.on('error', function(error) {
+			console.log(error);
+			res.status(500).send(error);
+		});
+		
+		query.on('end', function() {
+			res.json(value);
+		});	
 	},
 	
 	/*
