@@ -4,7 +4,7 @@ var sensor = {
 
 	getAll: function (res, req) {
 		if (!req.clientId) {
-    	return res.sendUnauthenticated();
+//    	return res.sendUnauthenticated();
 		}
 		
 		dbManager.getAllSensor(res);
