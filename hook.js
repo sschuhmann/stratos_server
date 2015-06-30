@@ -7,7 +7,9 @@ var crypto = require ('crypto');
 // Replace with user database and key value store
 var database = {
 	clients: {
-		testClient: {secret: "TEST", scopesGranted: ["one:read", "two"]}
+		testClient: {secret: "TEST", scopesGranted: ["one:read", "two"]},
+		producer: {secret: "PROD", scopesGranted:["create_value"]},
+		admin: {secret: "ADM", scopesGranted: ["create_value"]}
 	},
 	
 	tokensToClientIds: {},
