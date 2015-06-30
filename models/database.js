@@ -94,7 +94,7 @@ var manager = {
 	createValues: function(valueList, res) {
 		
 		for (var n in valueList) {
-			console.log(value);
+			console.log(valueList[n]);
 			var query = client.query (
 				'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
 				[valueList[n].timestamp, valueList[n].sensorId, valueList[n].value]
