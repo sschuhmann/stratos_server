@@ -73,7 +73,7 @@ var manager = {
 	 */
 	createValue: function(value) {
 		var query = client.query (
-			'INSERT INTO value (timestamp, sensor_id, value) VALUES ($0, $1, $2);',
+			'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $);',
 			[value.timestamp, value.sensor_id, value.value]
 		);
 	},
