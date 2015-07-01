@@ -23,9 +23,9 @@ var value = {
 			return res.sendUnauthenticated();
 		}
 		
-		if (req.scopesGranted.indexOf("create_value") === -1) {
-			return res.sendUnauthorized();
-		}
+//		if (req.scopesGranted.indexOf("create_value") === -1) {
+//			return res.sendUnauthorized();
+//		}
 		
 		try {
 			var value = JSON.parse(req.body);
