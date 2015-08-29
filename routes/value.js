@@ -10,12 +10,28 @@ var value = {
 		dbManager.getValues(req.params.mission, res);
 	},
 	
+	getValueSensorMission: function(req, res) {
+		if (!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		dbManager.getValueSensorMission(req.params.mission, req.params.sensor, res);
+	},
+	
 	getLastValues: function (req, res) {
 		if(!req.clientId) {
 			return res.sendUnauthenticated();
 		}
 		
 		dbManager.getLastValues(res);
+	},
+	
+	getLastValueSensor: function(req, res) {
+		if(!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		dbManager.getLastValueSensor(req.params.sensor, res);
 	},
 	
 	addValue: function(req, res) {

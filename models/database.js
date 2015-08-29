@@ -215,7 +215,23 @@ var manager = {
 			results.push (row);
 		});
 		
-		query.on('end', function(row) {
+		query.on('end', function() {
+			res.json(results);
+		});
+	},
+	
+	/*
+	 * Return the last values for a specific sensor
+	 */
+	getLastValuesSensor: function(sensorId, res) {
+		var results = [];
+		var query = client.query('select * from values where timestamp = (select max(timestamp) from value) AND sensorID = ' + sensorID + ';');
+		
+		query.on('row', function(row){
+			results.push(row);
+		});
+		
+		query.on('end', function() {
 			res.json(results);
 		});
 	},
@@ -226,6 +242,30 @@ var manager = {
 		query.on('row', function(row) {
 			return row;
 		});
+	},
+	
+	getSensorValueMission: function(missionId, sensorId, res) {
+		var query = client.query('SELECT * FROM mission WHERE id = $1;' [missionId]);
+		var found = true;
+		
+		query.on('row', function(row) {
+			found = true;
+			var results = [];
+			
+			if(row.end_time != null) {
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND $2;', [row.start_time, row.end_time]);
+			} else {
+				var query = client.query('SELCT * FROM value WHERE timestamp BETWEEn $1 AND now()::timestamp;');
+			}
+			
+			query.on('row', function(row) {
+				results.push(row);
+			})
+			
+			query.on('end', function() {
+				res.json(results);
+			});
+		})
 	},
 	
 	/*
