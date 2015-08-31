@@ -34,6 +34,14 @@ var value = {
 		dbManager.getLastValueSensor(req.params.sensor, res);
 	},
 	
+	getLastValueSensorList: function(req, res) {
+		if(!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		console.log(req.query)
+	},
+	
 	addValue: function(req, res) {
 		if (!req.clientId) {
 			return res.sendUnauthenticated();
