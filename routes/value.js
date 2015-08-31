@@ -37,7 +37,7 @@ var value = {
 			string += p + ', '
 		}
 		
-		console.log(string)
+		console.log(string)   
 		
 		dbManager.getLastValueSensor(string, res);
 	},
