@@ -5,7 +5,7 @@ var hooks 				= require('./hook');
 var config = require('./options.js');
 
 var host = config.storageConfig.server.host || '0.0.0.0';
-var port = config.storageConfig.server.port || '80';
+var port = config.storageConfig.server.port || '8080';
 
 var mission = require ('./routes/mission.js');
 var value 	= require ('./routes/value.js');

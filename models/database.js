@@ -54,7 +54,8 @@ var manager = {
 			'CREATE TABLE IF NOT EXISTS value(' +
 				'timestamp TIMESTAMP, ' +
 				'sensor_id INTEGER references sensor(id), ' +
-				'value decimal' +
+				'value decimal,' +
+				'constraint ucs unique (timestamp, sensor_id)'+
 			');'
 		);
 	},
