@@ -34,7 +34,7 @@ var value = {
 		var string = '';
 		
 		for (var p in req.params.sensor_id) {
-			string += p.toString() + ', '
+			string += p + ', '
 		}
 		
 		string = string.substring(0, string.length - 2);
