@@ -151,7 +151,7 @@ var manager = {
 	 */
 	getAllMission: function (res) {
 		var results = [];
-		var query = client.query('SELECT * FROM mission;');
+		var query = client.query('SELECT * FROM mission ORDER BY id;');
 		
 		query.on('row', function(row) {
 			results.push(row);
@@ -192,7 +192,7 @@ var manager = {
 	 */
 	getAllSensor: function (res) {
 		var results = [];
-		var query = client.query('SELECT * FROM sensor;');
+		var query = client.query('SELECT * FROM sensor ORDER BY id;');
 		
 		query.on('row', function(row) {
 			results.push(row);
@@ -226,7 +226,7 @@ var manager = {
 	 */
 	getLastValueSensor: function(sensorId, res) {
 		var results = [];
-		var query = client.query('select * from values where timestamp = (select max(timestamp) from value) AND sensorID = ' + sensorID + ';');
+		var query = client.query('select * from value where timestamp = (select max(timestamp) from value) AND sensor_id = ' + sensorId + ';');
 		
 		query.on('row', function(row){
 			results.push(row);
@@ -238,25 +238,26 @@ var manager = {
 	},
 	
 	getMission: function (missionId) {
-		query = client.query('SELECT * FROM mission WHERE id = $1', [missionId]);
+		query = client.query('SELECT * FROM mission WHERE id = $1 ORDER BY id', [missionId]);
 		
 		query.on('row', function(row) {
 			return row;
 		});
 	},
 	
-	getSensorValueMission: function(missionId, sensorId, res) {
+	getValueSensorMission: function(missionId, sensorId, res) {
 		var query = client.query('SELECT * FROM mission WHERE id = $1;' [missionId]);
 		var found = true;
-		
+		console.log(missionId);	
 		query.on('row', function(row) {
+			console.log(row);
 			found = true;
 			var results = [];
-			
 			if(row.end_time != null) {
+				console.log('welt');
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND $2;', [row.start_time, row.end_time]);
 			} else {
-				var query = client.query('SELCT * FROM value WHERE timestamp BETWEEn $1 AND now()::timestamp;');
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND now()::timestamp;');
 			}
 			
 			query.on('row', function(row) {
@@ -267,6 +268,10 @@ var manager = {
 				res.json(results);
 			});
 		})
+		query.on('err', function() {
+			console.log('err');
+		
+		});
 	},
 	
 	/*
