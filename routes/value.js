@@ -60,12 +60,14 @@ var value = {
 			} else {
 				var string = '';
 				for (var p in req.params.sensor_id) {
-					string += p + ', ';
+					string += req.params.sensor_id[p] + ', ';
 				}
 				string = string.substring(0, string.length - 2);
-				dbManager.getValuesFrom(req.params.start_time, string, res);
+				dbManager.getValuesFrom(req.params.start_time[0], string, res);
 			}
-		} 
+		} else {
+			res.json();
+		}
 	},
 	
 	addValue: function(req, res) {
