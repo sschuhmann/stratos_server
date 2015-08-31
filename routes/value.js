@@ -63,7 +63,7 @@ var value = {
 				dbManager.getValuesFrom(req.params.start_time, string, res);
 			}
 		} 
-	}
+	},
 	
 	addValue: function(req, res) {
 		if (!req.clientId) {
