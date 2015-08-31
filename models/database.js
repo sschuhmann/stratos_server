@@ -246,7 +246,7 @@ var manager = {
 	},
 	
 	getValueSensorMission: function(missionId, sensorId, res) {
-		var query = client.query('select * from mission where id = $1;',, [missionId]);
+		var query = client.query('select * from mission where id = $1;', [missionId]);
 		var found = true;
 		console.log(missionId);	
 		query.on('row', function(row) {
