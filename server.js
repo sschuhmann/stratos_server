@@ -37,7 +37,6 @@ server.get ('/stratos/api/missionValuesSensor/:mission/:sensor',		value.getValue
 server.get ('/stratos/api/lastValuesSensor/:sensor', 			value.getLastValueSensor);
 server.get ('/stratos/api/lastValues', 										value.getLastValues);
 server.get ('/stratos/api/sensor', 												sensor.getAll);
-server.get ('/stratos/api/sensor/:id', 										sensor.getOne);
 
 /* POST ROUTES */
 server.post('/stratos/api/mission', 							mission.create);
