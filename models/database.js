@@ -247,6 +247,31 @@ var manager = {
 		});
 	},
 	
+	getValuesFrom: function(start_time, sensorlist, res) {
+		var optionalList = '';
+		var result = [];
+		
+		if (sensorlist != undefined) {
+			optionalList += 'sensor_id in (' +
+			sensorlist +
+			') AND '
+		}
+		
+		query = client.query('SELECT * FROM value WHERE ' +
+			optionalList +
+			'timestamp BETWEEN ' +
+			start_time +
+			' AND now()::timestamp ORDER BY timestamp;');
+			
+		query.on('row', function(row) {
+			result.push(row);
+		});
+		
+		query.on('end', function() {
+			res.json(results);
+		});
+	},
+	
 	getValueSensorMission: function(missionId, sensorId, res) {
 		var query = client.query('select * from mission where id = $1;', [missionId]);
 		var found = true;
