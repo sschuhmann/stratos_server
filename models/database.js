@@ -223,7 +223,7 @@ var manager = {
 	/*
 	 * Return the last values for a specific sensor
 	 */
-	getLastValuesSensor: function(sensorId, res) {
+	getLastValueSensor: function(sensorId, res) {
 		var results = [];
 		var query = client.query('select * from values where timestamp = (select max(timestamp) from value) AND sensorID = ' + sensorID + ';');
 		
