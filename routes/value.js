@@ -31,6 +31,9 @@ var value = {
 			return res.sendUnauthenticated();
 		}
 		
+		console.log(req.params);
+		console.log(req.params.sensor_id);
+		
 		var string = '';
 		
 		for (var p in req.params.sensor_id) {
@@ -38,8 +41,6 @@ var value = {
 		}
 		
 		string = string.substring(0, string.length - 2);
-		
-		console.log(string)   
 		
 		dbManager.getLastValueSensor(string, res);
 	},
