@@ -37,7 +37,7 @@ var value = {
 			string += p + ', '
 		}
 		
-		string = string.substring(0, string.length - 1);
+		string = string.substring(0, string.length - 2);
 		
 		console.log(string)   
 		
