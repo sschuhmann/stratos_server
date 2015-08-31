@@ -30,16 +30,7 @@ var value = {
 		if(!req.clientId) {
 			return res.sendUnauthenticated();
 		}
-		
-		dbManager.getLastValueSensor(req.params.sensor, res);
-	},
-	
-	getLastValueSensorList: function(req, res) {
-		if(!req.clientId) {
-			return res.sendUnauthenticated();
-		}
-		
-		console.log(req.query)
+		dbManager.getLastValueSensor(req.params.sensor_id, res);
 	},
 	
 	addValue: function(req, res) {
