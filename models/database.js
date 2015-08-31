@@ -226,7 +226,7 @@ var manager = {
 	 */
 	getLastValueSensor: function(sensorId, res) {
 		var results = [];
-		var query = client.query('select * from value where timestamp = (select max(timestamp) from value) AND sensor_id = ' + sensorId + ';');
+		var query = client.query('select * from value where sensor_id in ($1) AND timestamp = (select max(timestamp) from value);', [sensorId]);
 		
 		query.on('row', function(row){
 			results.push(row);

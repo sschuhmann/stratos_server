@@ -31,15 +31,15 @@ var value = {
 			return res.sendUnauthenticated();
 		}
 		
-		dbManager.getLastValueSensor(req.params.sensor, res);
-	},
-	
-	getLastValueSensorList: function(req, res) {
-		if(!req.clientId) {
-			return res.sendUnauthenticated();
+		var string = '';
+		
+		for (var p in req.params.sensor_id) {
+			string += p + ', '
 		}
 		
-		console.log(req.query)
+		console.log(string)
+		
+		dbManager.getLastValueSensor(string, res);
 	},
 	
 	addValue: function(req, res) {
