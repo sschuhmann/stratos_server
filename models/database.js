@@ -43,7 +43,8 @@ var manager = {
 				'producer INTEGER references producer(id), ' +
 				'name VARCHAR(20) not null, ' +
 				'description VARCHAR(40), ' +
-				'unit VARCHAR(10)' +
+				'unit VARCHAR(10), ' +
+				'visible BOOLEAN' +
 			');' +
 			'CREATE TABLE IF NOT EXISTS mission(' +
 				'id SERIAL PRIMARY KEY, '+ 
@@ -127,8 +128,8 @@ var manager = {
 	 */
 	createSensor: function(sensor) {
 		var query = client.query(
-			'INSERT INTO sensor (producer, name, description, unit) VALUES ($1, $2, $3, $4);',
-			[sensor.producer, sensor.sensorname, sensor.description, sensor.unit]
+			'INSERT INTO sensor (producer, name, description, unit, visible) VALUES ($1, $2, $3, $4, $5);',
+			[sensor.producer, sensor.sensorname, sensor.description, sensor.unit, sensor.visible]
 		);
 	},
 	
@@ -284,7 +285,7 @@ var manager = {
 				console.log('welt');
 				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND $2 ORDER BY timestamp;', [row.start_time, row.end_time]);
 			} else {
-				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND now()::timestamp ORDER BY timestamp;');
+				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND now()::timestamp ORDER BY timestamp;', [row.start_time]);
 			}
 			
 			query.on('row', function(row) {
