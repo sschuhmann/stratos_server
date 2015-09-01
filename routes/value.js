@@ -85,7 +85,6 @@ var value = {
 			dbManager.createValue(value, res);
 		} catch (err) {
 			console.log(err);
-			res.status(500).send(err);
 		}
 	},
 	
@@ -106,7 +105,6 @@ var value = {
 			dbManager.createValues(valueList, res);
 		} catch (err) {
 			console.log(err);
-			res.status(500).send(err);
 		}
 		
 	},
