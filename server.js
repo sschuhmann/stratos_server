@@ -32,7 +32,7 @@ server.use(function logger(req,res,next) {
 /* GET Routes*/
 server.get ('/stratos/api/mission', 																mission.getAll);
 server.get ('/stratos/api/activeMission', 													mission.getActiveMission);
-server.get ('/stratos/api/missionValues/:mission', 									value.getMission);
+server.get ('/stratos/api/missionValues', 									value.getValueSensorMission);
 server.get ('/stratos/api/missionValuesSensor/:mission/:sensor',		value.getValueSensorMission);
 server.get ('/stratos/api/lastValuesFrom', 													value.getLastValuesFrom)
 server.get ('/stratos/api/lastValuesSensors',												value.getLastValueSensor)
