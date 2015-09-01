@@ -276,6 +276,15 @@ var manager = {
 	getValueSensorMission: function(missionId, sensorId, res) {
 		var query = client.query('select * from mission where id = $1;', [missionId]);
 		var found = true;
+		var optionalList = '';
+		
+		if (sensorId != undefined) {
+			optionalList += 'sensor_id in (' +
+			sensorlist +
+			') AND '
+		}
+		
+		if
 		console.log(missionId);	
 		query.on('row', function(row) {
 			console.log(row);
@@ -283,9 +292,13 @@ var manager = {
 			var results = [];
 			if(row.end_time != null) {
 				console.log('welt');
-				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND $2 ORDER BY timestamp;', [row.start_time, row.end_time]);
+				var query = client.query('SELECT * FROM value WHERE' + 
+					optionalList +
+					'timestamp BETWEEN $1 AND $2 ORDER BY timestamp;', [row.start_time, row.end_time]);
 			} else {
-				var query = client.query('SELECT * FROM value WHERE timestamp BETWEEN $1 AND now()::timestamp ORDER BY timestamp;', [row.start_time]);
+				var query = client.query('SELECT * FROM value WHERE ' +
+				optionalList +
+				'timestamp BETWEEN $1 AND now()::timestamp ORDER BY timestamp;', [row.start_time]);
 			}
 			
 			query.on('row', function(row) {
