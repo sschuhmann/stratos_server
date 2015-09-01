@@ -278,10 +278,12 @@ var manager = {
 		var found = true;
 		var optionalList = '';
 		
+		console.log(sensorId);
+		
 		if (sensorId != undefined) {
 			optionalList += 'sensor_id in (' +
 			sensorlist +
-			') AND '
+			') AND ';
 		}
 		
 		if
