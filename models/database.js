@@ -286,8 +286,6 @@ var manager = {
 			') AND ';
 		}
 		
-		if
-		console.log(missionId);	
 		query.on('row', function(row) {
 			console.log(row);
 			found = true;
