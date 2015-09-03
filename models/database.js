@@ -223,6 +223,19 @@ var manager = {
 		});
 	},
 	
+	getForecast: function(mission, res) {
+		var results = [];
+		var query = client.query('select * from forecast where missionid = $1 order by timestamp', [mission]);
+		
+		query.on('row', function(row) {
+			results.push(row);
+		});
+		
+		query.on('end', function() {
+			res.json(results);
+		});
+	},
+	
 	/*
 	 * Return the last values for a specific sensor
 	 */

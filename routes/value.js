@@ -18,6 +18,14 @@ var value = {
 		dbManager.getValueSensorMission(req.params.mission, req.params.sensor, res);
 	},
 	
+	getForecast: function (req, res) {
+		if(!req.clientId) {
+			return res.sendUnauthenticated();
+		}
+		
+		dbManager.getForecast(req.params.mission, res);
+	},
+	
 	getLastValues: function (req, res) {
 		if(!req.clientId) {
 			return res.sendUnauthenticated();
