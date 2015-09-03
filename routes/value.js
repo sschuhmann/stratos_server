@@ -80,9 +80,10 @@ var value = {
 //		}
 		
 		try {
-			var value = JSON.parse(req.body);
+			console.log(req.body);
+			//var value = JSON.parse(req.body);
 			
-			dbManager.createValue(value, res);
+			dbManager.createValue(req.body, res);
 		} catch (err) {
 			console.log(err);
 		}
@@ -98,11 +99,11 @@ var value = {
 //		}
 		
 		try {
-			var valueList = JSON.parse(req.body);
+			//var valueList = JSON.parse(req.body);
 		
-			console.log(valueList);
+//			console.log(valueList);
 		
-			dbManager.createValues(valueList, res);
+			dbManager.createValues(req.body, res);
 		} catch (err) {
 			console.log(err);
 		}

@@ -86,6 +86,7 @@ var manager = {
 	 * Add a value to the database.
 	 */
 	createValue: function(value, res) {
+		console.log(value)
 		var query = client.query (
 			'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
 			[value.timestamp, value.sensorId, value.value]
@@ -102,7 +103,7 @@ var manager = {
 	},
 	
 	createValues: function(valueList, res) {
-		
+		console.log(valueList)	
 		async.eachLimit (valueList, 4, function(row) {
 			var query = client.query (
 				'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
@@ -273,14 +274,14 @@ var manager = {
 		});
 	},
 	
-	getValueSensorMission: function(missionId, sensorId, res) {
+	getValueSensorMission: function(missionId, sensorlist, res) {
 		var query = client.query('select * from mission where id = $1;', [missionId]);
 		var found = true;
 		var optionalList = '';
 		
-		console.log(sensorId);
+		console.log(sensorlist);
 		
-		if (sensorId != undefined) {
+		if (sensorlist != undefined) {
 			optionalList += 'sensor_id in (' +
 			sensorlist +
 			') AND ';
