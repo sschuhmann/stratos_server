@@ -41,7 +41,7 @@ var value = {
 		}
 		
 		string = string.substring(0, string.length - 2);
-		
+		taxi
 		console.log(string)
 		
 		dbManager.getLastValueSensor(string, res);
