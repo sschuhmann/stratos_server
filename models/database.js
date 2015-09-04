@@ -104,7 +104,7 @@ var manager = {
 	
 	createValues: function(valueList, res) {
 		console.log(valueList)	
-		async.eachLimit (valueList, 4, function(row) {
+		async.eachLimit (valueList, valueList.length, function(row) {
 			var query = client.query (
 				'INSERT INTO value (timestamp, sensor_id, value) VALUES ($1, $2, $3);',
 				[row.timestamp, row.sensorId, row.value]
