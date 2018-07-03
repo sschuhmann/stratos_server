@@ -9,7 +9,7 @@
   "author": "Steffen Schuhmann",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "restify": "~3.0.3",
+    "restify": "~5.0.1",
     "woch": "~0.1.0",
     "restify-oauth2": "~4.0.3",
     "underscore": "~1.8.3",
